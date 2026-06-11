@@ -79,14 +79,25 @@
                 const sortedCardIndex = Math.floor(Math.random() * cards.length);
                 const sortedCard = cards[sortedCardIndex];
 
-                card.style.backgroundImage = 'url(\'./assets/images/cards/' + sortedCard + '.jpg\')';
                 card.style.display = 'block';
                 deck.style.display = 'none';
+
+                card
+                    .animate([{ transform: 'rotateY(180deg)' }, { transform: 'scale(1.2)' }], { duration: 200, fill: 'forwards' })
+                    .onfinish = function () {
+                        card.style.backgroundImage = 'url(\'./assets/images/cards/' + sortedCard + '.jpg\')';
+                    };
             }
 
             function returnCardToDeck() {
-                card.style.display = 'none';
-                deck.style.display = 'block';
+                card.style.backgroundImage = 'none';
+
+                card
+                    .animate({ transform: 'rotateY(180deg)' }, { duration: 200 })
+                    .onfinish = function () {
+                        card.style.display = 'none';
+                        deck.style.display = 'block';
+                    };
             }
         </script>
     </body>
