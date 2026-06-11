@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Funny Bunny Game Cards</title>
+
+        <meta charset="utf-8">
+
+        <style>
+            body {
+                margin: 0;
+                background-color: #008000;
+            }
+
+            #container {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #deck, #card {
+                width: 240px;
+                height: 320px;
+                box-sizing: border-box;
+                border: #fff 10px solid;
+                cursor: pointer;
+                border-radius: 10px;
+                box-shadow: 3px 3px 10px #333;
+                background-color: #fff;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            #deck {
+                background-image: url('./assets/images/deck-cover.jpg');
+            }
+
+            #card {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="deck" onclick="pickUpCard();"></div>
+            <div id="card" onclick="returnCardToDeck();"></div>
+        </div>
+
+        <script>
+            const cards = [
+                // A => Coelho anda 1 casa
+                // Total => 9 cartas
+                // Probabilidade => 37,5%
+                'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
+
+                // B => 6x - Coelho anda 2 casas
+                // Total => 6 cartas
+                // Probabilidade => 25%
+                'b', 'b', 'b', 'b', 'b', 'b',
+
+                // C => 3x - Coelho anda 3 cadas
+                // Total => 3 cartas
+                // Probabilidade => 12,5%
+                'c', 'c', 'c',
+
+                // D => 6x - Gira, gira, gira!
+                // Total => 6 cartas
+                // Probabilidade => 25%
+                'd', 'd', 'd', 'd', 'd', 'd',
+            ];
+
+            const deck = document.getElementById('deck');
+            const card = document.getElementById('card');
+
+            function pickUpCard() {
+                const sortedCardIndex = Math.floor(Math.random() * cards.length);
+                const sortedCard = cards[sortedCardIndex];
+
+                card.style.backgroundImage = 'url(\'./assets/images/cards/' + sortedCard + '.jpg\')';
+                card.style.display = 'block';
+                deck.style.display = 'none';
+            }
+
+            function returnCardToDeck() {
+                card.style.display = 'none';
+                deck.style.display = 'block';
+            }
+        </script>
+    </body>
+</html>
