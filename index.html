@@ -76,6 +76,8 @@
             const deck = document.getElementById('deck');
             const card = document.getElementById('card');
 
+            let timeoutId;
+
             function pickUpCard() {
                 const sortedCardIndex = Math.floor(Math.random() * cards.length);
                 const sortedCard = cards[sortedCardIndex];
@@ -88,6 +90,9 @@
                     .onfinish = function () {
                         card.style.backgroundImage = 'url(\'./assets/images/cards/' + sortedCard + '.jpg\')';
                     };
+
+                timeoutId && clearTimeout(timeoutId);
+                timeoutId = setTimeout(returnCardToDeck, 5000);
             }
 
             function returnCardToDeck() {
